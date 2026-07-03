@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Startup Compliance in Kerala | MP Tax Associates</title>
+  <meta name="description" content="Complete compliance package for new startups — from incorporation and DPIIT recognition to first-year GST, IT filing and ROC compliance.">
+  <link rel="canonical" href="https://www.mptaxassociates.com/startup-compliance.html">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --dark: #111111;
+      --grey: #666666;
+      --light: #F8F8F8;
+      --orange: #f97316;
+      --orange-dim: rgba(249,115,22,0.1);
+      --display: 'Outfit', sans-serif;
+      --body: 'Inter', sans-serif;
+      --ease: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--body); background: var(--light); color: var(--dark); overflow-x: hidden; }
+    
+    /* NAV */
+    nav { position: fixed; top: 0; width: 100%; padding: 24px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 100; backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .logo { font-family: var(--display); font-size: 24px; font-weight: 800; color: var(--dark); text-decoration: none; }
+    .nlinks { display: flex; gap: 32px; }
+    .nlinks a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 14px; transition: var(--ease); }
+    .nlinks a:hover { color: var(--orange); }
+    
+    /* HERO */
+    .hero { min-height: 90vh; display: flex; align-items: center; padding: 120px 60px 60px; background: #fff; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1280px; margin: 0 auto; align-items: center; }
+    .htag { display: inline-block; padding: 8px 16px; background: var(--orange-dim); color: var(--orange); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border-radius: 100px; margin-bottom: 24px; }
+    .htitle { font-family: var(--display); font-size: clamp(48px, 5vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 24px; }
+    .hdesc { font-size: 18px; color: var(--grey); line-height: 1.7; max-width: 500px; margin-bottom: 40px; }
+    .hbtns { display: flex; gap: 16px; }
+    .btn-p { background: var(--orange); color: #fff; padding: 16px 32px; border-radius: 100px; text-decoration: none; font-weight: 700; display: inline-flex; transition: var(--ease); border: none; cursor: pointer; box-shadow: 0 8px 24px rgba(249,115,22,0.3); }
+    .btn-p:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(249,115,22,0.4); }
+    .btn-g { background: transparent; color: var(--dark); padding: 16px 32px; border-radius: 100px; text-decoration: none; font-weight: 600; display: inline-flex; transition: var(--ease); border: 1px solid rgba(0,0,0,0.1); }
+    .btn-g:hover { background: rgba(0,0,0,0.05); }
+    .himg { position: relative; border-radius: 24px; overflow: hidden; height: 600px; box-shadow: 0 24px 64px rgba(0,0,0,0.08); }
+    .himg img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* SECTION */
+    .sec { padding: 100px 60px; max-width: 1400px; margin: 0 auto; }
+    .stitle { font-family: var(--display); font-size: 48px; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.02em; }
+    
+    /* PROCESS */
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
+    .pcard { background: #fff; padding: 40px 32px; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05); transition: var(--ease); position: relative; }
+    .pcard:hover { transform: translateY(-8px); box-shadow: 0 24px 48px rgba(0,0,0,0.06); }
+    .pnum { font-family: var(--display); font-size: 64px; font-weight: 800; color: rgba(0,0,0,0.04); position: absolute; top: 20px; right: 24px; line-height: 1; }
+    .ptitle { font-size: 20px; font-weight: 700; margin-bottom: 12px; margin-top: 20px; }
+    .pdesc { font-size: 15px; color: var(--grey); line-height: 1.6; }
+    
+    /* WHY CHOOSE */
+    .why-dark { background: var(--dark); color: #fff; }
+    .why-dark .stitle { color: #fff; }
+    .wgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+    .wcard { background: rgba(255,255,255,0.05); padding: 40px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); }
+    .wtitle { font-size: 22px; font-weight: 700; margin-bottom: 16px; }
+    .wdesc { color: rgba(255,255,255,0.6); line-height: 1.7; }
+    
+    /* CTA */
+    .cta-sec { background: var(--orange); padding: 100px 60px; text-align: center; color: #fff; }
+    .cta-title { font-family: var(--display); font-size: 56px; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.02em; }
+    .cta-btn { background: #fff; color: var(--orange); padding: 18px 40px; border-radius: 100px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 32px; transition: var(--ease); font-size: 18px; }
+    .cta-btn:hover { transform: scale(1.05); box-shadow: 0 16px 32px rgba(0,0,0,0.1); }
+    
+    /* FOOTER */
+    footer { background: #000; padding: 60px; color: #fff; text-align: center; font-size: 14px; color: rgba(255,255,255,0.5); }
+    
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .himg { height: 400px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .wgrid { grid-template-columns: 1fr; }
+      .sec { padding: 60px 24px; }
+      nav { padding: 20px 24px; }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Startup Compliance",
+      "provider": {
+        "@type": "AccountingService",
+        "name": "MP Tax Associates",
+        "image": "https://www.mptaxassociates.com/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kerala",
+          "addressCountry": "IN"
+        }
+      },
+      "description": "Complete compliance package for new startups — from incorporation and DPIIT recognition to first-year GST, IT filing and ROC compliance."
+    }
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">MP Tax Associates</a>
+    <div class="nlinks">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#why">Why Us</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="htag">Business Registration</div>
+        <h1 class="htitle">Startup Compliance</h1>
+        <p class="hdesc">Complete compliance package for new startups — from incorporation and DPIIT recognition to first-year GST, IT filing and ROC compliance.</p>
+        <div class="hbtns">
+          <a href="index.html#contact" class="btn-p">Connect With Us</a>
+          <a href="tel:+910000000000" class="btn-g">Call Now</a>
+        </div>
+      </div>
+      <div class="himg">
+        <img src="service_company_reg_1783096849663.png" alt="Startup Compliance">
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2 class="stitle">Our Process</h2>
+    <div class="process-grid">
+      <div class="pcard">
+        <div class="pnum">1</div>
+        <h3 class="ptitle">Consultation</h3>
+        <p class="pdesc">We understand your exact requirements and provide a customized compliance roadmap.</p>
+      </div>
+      <div class="pcard">
+        <div class="pnum">2</div>
+        <h3 class="ptitle">Documentation</h3>
+        <p class="pdesc">Our team securely collects and verifies all necessary statutory documents.</p>
+      </div>
+      <div class="pcard">
+        <div class="pnum">3</div>
+        <h3 class="ptitle">Filing & Processing</h3>
+        <p class="pdesc">We initiate the application and manage all communication with the respective portals.</p>
+      </div>
+      <div class="pcard">
+        <div class="pnum">4</div>
+        <h3 class="ptitle">Delivery</h3>
+        <p class="pdesc">Your certificates, filings, and compliance reports are delivered digitally with zero hassle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec why-dark">
+    <h2 class="stitle">Why Choose MP Tax Associates</h2>
+    <div class="wgrid">
+      <div class="wcard">
+        <h3 class="wtitle">Specialized Expertise</h3>
+        <p class="wdesc">Our team consists of Chartered Accountants, Tax Experts, and legal professionals ensuring 100% compliance accuracy.</p>
+      </div>
+      <div class="wcard">
+        <h3 class="wtitle">Zero Rejections</h3>
+        <p class="wdesc">We pre-verify all applications and filings manually, leading to a near 100% success rate on the first attempt.</p>
+      </div>
+      <div class="wcard">
+        <h3 class="wtitle">Fast Turnaround</h3>
+        <p class="wdesc">We respect your time. Most registrations and filings are completed well ahead of statutory deadlines.</p>
+      </div>
+      <div class="wcard">
+        <h3 class="wtitle">Pan-India Support</h3>
+        <p class="wdesc">While based in Kerala, our digital-first infrastructure allows us to serve businesses seamlessly across India.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-sec">
+    <h2 class="cta-title">Ready to streamline your compliance?</h2>
+    <p style="font-size: 20px; color: rgba(255,255,255,0.8);">Talk to our tax experts today.</p>
+    <a href="index.html#contact" class="cta-btn">Get Started Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MP Tax Associates. Built with ❤️ for Indian businesses.</p>
+  </footer>
+
+</body>
+</html>
