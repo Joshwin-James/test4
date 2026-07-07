@@ -450,18 +450,20 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 }
 
 /* ── TESTIMONIALS ────────────────────────────────────────── */
-#testimonials{background:var(--dark);padding:120px 0}
+#testimonials{background:#0B1120;padding:60px 0; overflow:hidden;}
 .test-wrap{max-width:1280px;margin:0 auto;padding:0 24px}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px}
-.tcard{background:var(--light);border:1px solid var(--border);border-radius:0;padding:40px 32px;display:flex;flex-direction:column;gap:22px;transition:var(--ease);}
-.tcard:hover{transform:translateY(-4px);box-shadow:var(--sh-md)}
-.tq{font-size:15px;color:var(--grey);line-height:1.8;flex:1}
-.tq::before{content:'\201C';font-size:48px;color:var(--dark);line-height:.5;display:block;margin-bottom:12px}
-.tstars{color:var(--dark);font-size:14px;letter-spacing:2px}
-.tau{display:flex;align-items:center;gap:12px}
-.tav{width:42px;height:42px;border-radius:50%;background:var(--dark);display:flex;align-items:center;justify-content:center;font-weight:500;color:#fff;font-size:14px;flex-shrink:0}
-.tname{font-weight:700;color:var(--dark);font-size:15px}
-.trole{font-size:12px;color:var(--grey);margin-top:2px}
+.test-stack { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.stack-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; will-change: transform, opacity; display: flex; align-items: center; justify-content: center; }
+.test-grid{display:none;}
+.tcard{background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px 48px; width: 100%; max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; transition: var(--ease); box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);}
+.tcard:hover{transform:translateY(-4px);box-shadow: 0 24px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);}
+.tq{font-size:16px;color:rgba(255,255,255,0.55);line-height:1.8;flex:1;position:relative;}
+.tq::before{content:'\201C';font-size:48px;color:rgba(255,255,255,0.1);line-height:.5;display:block;margin-bottom:12px}
+.tstars{color:#FBBF24;font-size:14px;letter-spacing:2px}
+.tau{display:flex;align-items:center;gap:16px; margin-top: 12px;}
+.tav{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-weight:600;color:rgba(255,255,255,0.8);font-size:16px;flex-shrink:0}
+.tname{font-weight:600;color:rgba(255,255,255,0.9);font-size:15px}
+.trole{font-size:13px;color:rgba(255,255,255,0.4);margin-top:4px}
 
 /* ── TRUST ───────────────────────────────────────────────── */
 #trust{background:#fff;padding:72px 0;overflow:hidden;border-bottom:1px solid var(--border)}
@@ -1097,12 +1099,52 @@ footer{background:var(--dark);padding:96px 24px 48px;border-top:1px solid rgba(2
 
 <!-- ══════════════ TESTIMONIALS ══════════════ -->
 <section id="testimonials">
-  <div class="test-wrap">
-    <div><div class="slabel rv" style="color:var(--orange)">Client Stories</div><h2 class="stitle stitle-w rv d1">Why Clients <span style="color:var(--orange)">Love Us</span></h2></div>
-    <div class="test-grid">
-      <div class="tcard rv d1"><div class="tstars">★★★★★</div><div class="tq">The GST Returns of my company are handled by MP Tax Associates systematically. Their service is prompt and responsible — return filing is always on time without any flaw.</div><div class="tau"><div class="tav">P</div><div><div class="tname">Pradeep Kumar</div><div class="trole">Business Owner, Kerala</div></div></div></div>
-      <div class="tcard rv d2"><div class="tstars">★★★★★</div><div class="tq">I was confused about changing GST norms and approached MP Tax Associates for advisory. Their experts gave me complete clarity on GST calculations and benefits. Truly professional.</div><div class="tau"><div class="tav">N</div><div><div class="tname">Nirmala J</div><div class="trole">Retail Entrepreneur, Kollam</div></div></div></div>
-      <div class="tcard rv d3"><div class="tstars">★★★★★</div><div class="tq">I registered my company with the help of MP Tax Associates. They guided me through the entire process and handled all paperwork. Best served — I feel completely at ease with my compliance.</div><div class="tau"><div class="tav">M</div><div><div class="tname">Mathew Immanuel</div><div class="trole">Company Director, Trivandrum</div></div></div></div>
+  <div class="test-wrap" style="position: relative; max-width: 900px; margin: 0 auto; text-align: center;">
+    <div><h2 class="stitle stitle-w rv d1" style="margin-bottom: 24px; font-family: var(--display); font-size: 64px; color: #fff;">Why Clients Love Us</h2></div>
+    
+    <!-- Parallax Stacking Slider -->
+    <div class="test-slider-container" style="position: relative; width: 100%; max-width: 800px; margin: 0 auto;">
+      <!-- Hidden placeholder to dictate container height based on content -->
+      <div class="test-slide-placeholder" style="visibility: hidden; pointer-events: none;">
+        <div class="tcard" style="padding: 40px 48px; border: 1px solid transparent;"><div class="tq" style="font-size:18px; line-height:1.8; margin-bottom:32px;">This is a placeholder text to ensure the absolute positioned slides have a container height to live in. It needs to be relatively long so it matches the longest review. We approached them for an internal audit and were blown away by the depth of their financial analysis. Not only did they identify critical gaps in our stock management, but they also provided a clear strategic roadmap to optimize our working capital. Highly knowledgeable and deeply committed.</div></div>
+      </div>
+      
+      <div class="test-stack" id="testStack" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+        <!-- Review 1 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">The GST Returns of my company are handled by MP Tax Associates systematically. Their service is prompt and responsible — return filing is always on time without any flaw.</div><div class="tau"><div class="tav">P</div><div><div class="tname">Pradeep Kumar</div><div class="trole">Business Owner, Kerala</div></div></div></div>
+        </div>
+        <!-- Review 2 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">I was confused about changing GST norms and approached MP Tax Associates for advisory. Their experts gave me complete clarity on GST calculations and benefits. Truly professional.</div><div class="tau"><div class="tav">N</div><div><div class="tname">Nirmala J</div><div class="trole">Retail Entrepreneur, Kollam</div></div></div></div>
+        </div>
+        <!-- Review 3 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">I registered my company with the help of MP Tax Associates. They guided me through the entire process and handled all paperwork. Best served — I feel completely at ease with my compliance.</div><div class="tau"><div class="tav">M</div><div><div class="tname">Mathew Immanuel</div><div class="trole">Company Director, Trivandrum</div></div></div></div>
+        </div>
+        <!-- Review 4 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">MP Tax Associates has been a game changer for our manufacturing business. We used to struggle immensely with complex GST filings and year-end audits. Their team completely revamped our accounting processes and ensured we never missed a deadline. I highly recommend them to any enterprise looking for stress-free compliance!</div><div class="tau"><div class="tav">R</div><div><div class="tname">Ramesh Nair</div><div class="trole">Managing Director, Kochi</div></div></div></div>
+        </div>
+        <!-- Review 5 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">As a startup founder, I had zero knowledge of ROC compliance and tax structures. The professionals at MP Tax Associates held my hand through the entire company incorporation process, secured our DPIIT recognition, and currently handle our entire payroll. Truly a one-stop premium solution.</div><div class="tau"><div class="tav">A</div><div><div class="tname">Anjali V</div><div class="trole">Tech Entrepreneur, Bangalore</div></div></div></div>
+        </div>
+        <!-- Review 6 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">We approached them for an internal audit and were blown away by the depth of their financial analysis. Not only did they identify critical gaps in our stock management, but they also provided a clear strategic roadmap to optimize our working capital. Highly knowledgeable and deeply committed.</div><div class="tau"><div class="tav">G</div><div><div class="tname">George Kurian</div><div class="trole">CFO, Ernakulam</div></div></div></div>
+        </div>
+        <!-- Review 7 -->
+        <div class="test-slide stack-slide" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center;">
+          <div class="tcard"><div class="tstars">★★★★★</div><div class="tq">Getting our FSSAI central license and import-export code (IEC) seemed like a daunting bureaucratic nightmare. MP Tax Associates handled the documentation seamlessly and got it done in record time. Their continuous communication and transparency are unmatched in this industry.</div><div class="tau"><div class="tav">L</div><div><div class="tname">Lakshmi Sankar</div><div class="trole">Exporter, Trivandrum</div></div></div></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Controls -->
+    <div class="test-controls" style="display: flex; justify-content: center; gap: 16px; margin-top: 48px; position: relative; z-index: 50;">
+      <button class="test-btn" id="prevTestBtn" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&lt;</button>
+      <button class="test-btn" id="nextTestBtn" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;">&gt;</button>
     </div>
   </div>
 </section>
@@ -1586,10 +1628,10 @@ function handleForm(){
           
           indCards.forEach((card, i) => {
             if(i === 0) {
-              gsap.set(card, { zIndex: 10, yPercent: 0, y: 0 });
+              gsap.set(card, { zIndex: 10, top: "0%" });
             } else {
-              // hide the cards completely below the active one
-              gsap.set(card, { zIndex: 10 + i, yPercent: 100, y: 0 });
+              // Hide cards physically below the active one using top percentage instead of transform yPercent
+              gsap.set(card, { zIndex: 10 + i, top: "120%" });
             }
           });
 
@@ -1599,11 +1641,11 @@ function handleForm(){
               start: "top top", 
               end: "+=350%", 
               pin: true,
-              scrub: 1,
+              scrub: 1
             }
           });
           
-          // Header upward animation synced with start - MUCH smaller shift
+          // Header upward animation
           indTl.to('.ind-header-stacked', { y: -30, opacity: 0.85, scale: 0.95, ease: "power2.inOut" }, 0)
                .to('.ind-cards-stack-container', { y: -15, ease: "power2.inOut" }, 0);
 
@@ -1612,8 +1654,8 @@ function handleForm(){
             const prevCard = indCards[i - 1];
             
             indTl.addLabel("card" + i)
-              .to(card, { yPercent: 0, y: 0, ease: "power2.inOut" }, "card" + i)
-              .to(prevCard, { scale: 0.96, opacity: 0.4, ease: "power2.inOut" }, "card" + i);
+              .to(card, { top: "0%", ease: "power2.inOut" }, "card" + i)
+              .to(prevCard, { scale: 0.94, opacity: 0.3, ease: "power2.inOut" }, "card" + i);
           });
         }
 
@@ -1772,6 +1814,92 @@ function toggleChat(){
   const box=document.getElementById('chatbox');
   btn.classList.toggle('open');box.classList.toggle('open');
 }
+</script>
+<script>
+  // Parallax Stacking Slider Logic
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.stack-slide');
+    if(slides.length === 0) return;
+    
+    const prevBtn = document.getElementById('prevTestBtn');
+    const nextBtn = document.getElementById('nextTestBtn');
+    const stackContainer = document.getElementById('testStack');
+    let currentIndex = 0;
+    let isAnimating = false;
+    let autoSlideInterval;
+    
+    const N = slides.length;
+    
+    // Initial Setup: Hide all except the first one
+    slides.forEach((slide, i) => {
+      if (i === currentIndex) {
+        gsap.set(slide, { xPercent: 0, yPercent: 0, scale: 1, autoAlpha: 1, zIndex: 10 });
+      } else {
+        gsap.set(slide, { xPercent: 0, yPercent: 0, scale: 1, autoAlpha: 0, zIndex: 1 });
+      }
+    });
+    
+    function animateToNextSlide(nextIdx, direction) {
+      if(isAnimating) return;
+      isAnimating = true;
+      
+      const current = slides[currentIndex];
+      const next = slides[nextIdx];
+      
+      // Setup incoming slide based on direction
+      if (direction === 'next') {
+        gsap.set(next, { xPercent: 100, yPercent: 0, scale: 1, autoAlpha: 1, zIndex: 20 });
+      } else {
+        gsap.set(next, { xPercent: -100, yPercent: 0, scale: 1, autoAlpha: 1, zIndex: 20 });
+      }
+      
+      // Ensure current slide is below the incoming one
+      gsap.set(current, { zIndex: 10 });
+      
+      const tl = gsap.timeline({
+        onComplete: () => {
+          gsap.set(current, { autoAlpha: 0, scale: 1, zIndex: 1, filter: "blur(0px)" }); // hide current once covered
+          currentIndex = nextIdx;
+          isAnimating = false;
+        }
+      });
+      
+      // Incoming slide slides in directly on top
+      tl.to(next, { duration: 1, xPercent: 0, ease: "power3.inOut" }, 0);
+      
+      // Current slide shrinks slightly backward, blurs out, and fades out to prevent overlapping text visibility
+      tl.to(current, { duration: 1, scale: 0.92, opacity: 0, filter: "blur(12px)", ease: "power3.inOut" }, 0);
+    }
+    
+    function nextSlide() {
+      const nextIdx = (currentIndex + 1) % N;
+      animateToNextSlide(nextIdx, 'next');
+    }
+    
+    function prevSlide() {
+      const nextIdx = (currentIndex - 1 + N) % N;
+      animateToNextSlide(nextIdx, 'prev');
+    }
+    
+    function startAutoSlide() {
+      autoSlideInterval = setInterval(nextSlide, 4000);
+    }
+    
+    function resetAutoSlide() {
+      clearInterval(autoSlideInterval);
+      startAutoSlide();
+    }
+    
+    if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); resetAutoSlide(); });
+    if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); resetAutoSlide(); });
+    
+    if(stackContainer) {
+      stackContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+      stackContainer.addEventListener('mouseleave', startAutoSlide);
+    }
+    
+    startAutoSlide();
+  });
 </script>
 </body>
 </html>
