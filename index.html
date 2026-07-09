@@ -603,7 +603,10 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 
 /* ── FOOTER ──────────────────────────────────────────────── */
 /* ── FOOTER ──────────────────────────────────────────────── */
-footer{background:var(--dark);padding:96px 24px 48px;border-top:1px solid rgba(255,255,255,.1)}
+footer{background:var(--dark);padding:80px 40px 40px;margin:24px;border-radius:32px;}
+@media(max-width: 900px){
+  footer{margin:12px;border-radius:24px;padding:64px 24px 32px;}
+}
 .ft-inner{max-width:1280px;margin:0 auto}
 .ft-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:64px;padding-bottom:64px;border-bottom:1px solid rgba(255,255,255,.1)}
 .ft-brand{display:flex;flex-direction:column;gap:20px}
@@ -633,14 +636,18 @@ footer{background:var(--dark);padding:96px 24px 48px;border-top:1px solid rgba(2
 /* ═══════════════════════════════════════════════════════════
    MP ASSISTANT CHATBOT
 ═══════════════════════════════════════════════════════════ */
-#chat-btn{position:fixed;bottom:100px;right:40px;width:64px;height:64px;background:var(--dark);border-radius:0;border:1px solid var(--dark);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:8800;box-shadow:var(--sh-md);transition:var(--ease);}
-#chat-btn:hover{transform:scale(1.05);background:var(--grey);border-color:var(--grey)}
-#chat-btn svg{width:28px;height:28px;fill:#fff;transition:var(--ease)}
+#chat-btn{position:fixed;bottom:30px;right:30px;width:auto;height:auto;padding:14px 24px;gap:12px;background:rgba(15,23,42,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:16px;border:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:8800;box-shadow:0 8px 32px rgba(0,0,0,0.25);transition:all 0.4s cubic-bezier(0.25,1,0.5,1);color:#fff;font-family:var(--body);font-weight:600;font-size:15px;letter-spacing:0.3px;}
+#chat-btn:hover{transform:translateY(-4px) scale(1.02);background:rgba(15,23,42,0.95);box-shadow:0 12px 32px rgba(37,99,235,0.3);border-color:rgba(37,99,235,0.4);}
+#chat-btn svg{width:22px;height:22px;transition:var(--ease);flex-shrink:0;}
+#chat-btn .chat-btn-text { background: linear-gradient(90deg, #ffffff 0%, #60a5fa 50%, #ffffff 100%); background-size: 200% auto; color: #fff; background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: textPremiumShine 4s linear infinite; }
+@keyframes textPremiumShine { to { background-position: 200% center; } }
+#chat-btn.open .chat-btn-text { display: none; }
+#chat-btn.open { padding: 16px; width: 54px; height: 54px; border-radius: 16px; }
 #chat-btn.open svg.ico-chat{display:none}
-#chat-btn.open svg.ico-close{display:block}
+#chat-btn.open svg.ico-close{display:block; width: 22px; height: 22px; fill: #fff;}
 #chat-btn svg.ico-close{display:none}
 
-#chatbox{position:fixed;bottom:100px;right:28px;width:360px;max-height:520px;background:#fff;border-radius:var(--r-xl);box-shadow:0 32px 80px rgba(0,0,0,.18);z-index:8700;display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:scale(.9) translateY(20px);pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);border:1px solid var(--border)}
+#chatbox{position:fixed;bottom:95px;right:30px;width:360px;max-height:520px;background:#fff;border-radius:var(--r-xl);box-shadow:0 32px 80px rgba(0,0,0,.18);z-index:8700;display:flex;flex-direction:column;overflow:hidden;opacity:0;transform:scale(.9) translateY(20px);pointer-events:none;transition:all .4s cubic-bezier(.16,1,.3,1);border:1px solid var(--border)}
 #chatbox.open{opacity:1;transform:scale(1) translateY(0);pointer-events:auto}
 .chat-hdr{background:var(--dark);padding:18px 20px;display:flex;align-items:center;gap:12px}
 .chat-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#fbbf24);display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -760,6 +767,140 @@ footer{background:var(--dark);padding:96px 24px 48px;border-top:1px solid rgba(2
     .why-col { width: 100%; top: 0; gap: 40px; padding-bottom: 0; }
     .right-col { top: 0; }
   }
+
+/* ════════ GLASSMORPHISM CONTACT ════════ */
+.glass-contact-section {
+  position: relative;
+  background: var(--bg-main, #f8fafc);
+  padding: 120px 24px;
+  overflow: hidden;
+}
+
+.glass-ct-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 40px;
+  position: relative;
+  z-index: 10;
+}
+.glass-ct-panel {
+  background: #ffffff;
+  border-radius: 32px;
+  padding: 56px 48px;
+  box-shadow: 0 24px 64px rgba(0,0,0, 0.04), 0 4px 12px rgba(0,0,0, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+.ct-info-panel h2 {
+  font-family: var(--display);
+  font-size: 48px;
+  color: var(--dark);
+  margin-bottom: 24px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.5px;
+}
+.ct-info-panel p {
+  color: var(--grey);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+.glass-ci-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: auto;
+}
+.ci-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.ci-ico {
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+}
+.ci-txt {
+  color: var(--dark);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+.ct-form-panel {
+  padding: 56px;
+}
+.g-form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.g-form-row > * { flex: 1; }
+.ct-form-panel input, .ct-form-panel select, .ct-form-panel textarea {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 18px 24px;
+  color: var(--dark);
+  font-family: var(--body);
+  font-size: 15px;
+  transition: all 0.3s;
+}
+.ct-form-panel textarea {
+  height: 140px;
+  resize: none;
+  margin-bottom: 24px;
+}
+.ct-form-panel input::placeholder, .ct-form-panel textarea::placeholder {
+  color: #94a3b8;
+}
+.ct-form-panel select {
+  color: #64748b;
+  appearance: none;
+}
+.ct-form-panel select:focus { color: var(--dark); }
+.ct-form-panel option { color: #000; }
+.ct-form-panel input:focus, .ct-form-panel select:focus, .ct-form-panel textarea:focus {
+  border-color: var(--primary);
+  background: #fff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+.glass-submit {
+  background: #ffffff;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 40px;
+  padding: 20px 32px;
+  color: var(--primary);
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.12);
+  transition: all 0.3s;
+}
+.glass-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.2);
+  background: var(--bg-main);
+}
+@media (max-width: 900px) {
+  .glass-ct-container { grid-template-columns: 1fr; }
+  .glass-ct-panel { padding: 40px 24px; border-radius: 24px; }
+  .g-form-row { flex-direction: column; gap: 20px; }
+  .glass-contact-section { padding: 80px 20px; }
+}
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -1351,57 +1492,51 @@ window.addEventListener('error', function(e) {
   </div>
 </section>
 
-<!-- ══════════════ CONTACT — PREMIUM REDESIGN ══════════════ -->
-<section id="contact">
-  <div class="contact-bg-img"></div>
-  <div class="contact-bg-ov"></div>
-  <div class="contact-orb"></div>
-  <div class="contact-inner">
-    <div class="contact-hdr">
-      <div class="slabel rv" style="justify-content:center;color:var(--orange)">Get In Touch</div>
-      <h2 class="stitle stitle-w rv d1" style="color:var(--dark)">Let's Build Your Business<br><span style="color:var(--orange)">With Confidence</span></h2>
-      <p class="sbody rv d2" style="color:var(--grey);margin:16px auto 0;text-align:center">Whether you're a startup, growing business or established enterprise — our experts are ready to simplify your taxation, compliance and financial management.</p>
+<!-- ══════════════ CONTACT — PREMIUM GLASSMORPHISM ══════════════ -->
+<section id="contact" class="glass-contact-section">
+  <div class="glass-ct-container">
+    
+    <!-- LEFT PANEL: Info -->
+    <div class="glass-ct-panel ct-info-panel rv">
+      <h2>Get in Touch</h2>
+      <p>We're here to discuss your business needs and bring your ideas to life with premium tax, audit & compliance solutions.</p>
+      
+      <div class="glass-ci-list">
+        <div class="ci-item">
+          <div class="ci-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.92 2 10.75c0 2.8 1.5 5.29 3.82 6.88-.34 1.57-1.4 3.03-1.5 3.16-.14.18-.08.43.12.53.1.05.21.05.31 0 2.06-1.12 3.65-1.92 4.4-2.22.92.23 1.87.35 2.85.35 5.52 0 10-3.92 10-8.75S17.52 2 12 2zm-4 9.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+          <div class="ci-txt">info@mptaxassociates.com</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="ci-txt">Kottiyam, Kollam<br>Kerala, India</div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.62 13.93l-2.09 2.09c-2.7-1.22-4.94-3.46-6.16-6.16l2.09-2.09c.19-.19.27-.47.2-.73-.24-.8-.37-1.66-.37-2.54 0-.55-.45-1-1-1H6.5c-.55 0-1 .45-1 1 0 6.35 5.15 11.5 11.5 11.5.55 0 1-.45 1-1v-2.8c0-.55-.45-1-1-1-.88 0-1.74-.13-2.54-.37-.26-.07-.54 0-.73.2z"/></svg></div>
+          <div class="ci-txt">+91 96339 68020<br>0474 2991293</div>
+        </div>
+      </div>
     </div>
 
-    <!-- FORM UNDERNEATH HEADING -->
-    <div class="contact-form rvr" id="contactFormWrap" style="max-width:800px; margin:0 auto 100px;">
-      <div class="form-row">
-        <div class="fg">
-          <input type="text" id="fn" placeholder="x" autocomplete="name">
-          <label for="fn">Full Name</label>
-        </div>
-        <div class="fg">
-          <input type="email" id="em" placeholder="x" autocomplete="email">
-          <label for="em">Email Address</label>
-        </div>
+    <!-- RIGHT PANEL: Form -->
+    <div class="glass-ct-panel ct-form-panel rvl">
+      <div class="g-form-row">
+        <input type="text" id="fn" placeholder="Your Name*">
+        <input type="email" id="em" placeholder="Email Address*">
       </div>
-      <div class="form-row">
-        <div class="fg">
-          <input type="tel" id="ph" placeholder="x" autocomplete="tel">
-          <label for="ph">Phone Number</label>
-        </div>
-        <div class="fg">
-          <input type="text" id="bn" placeholder="x">
-          <label for="bn">Business Name</label>
-        </div>
-      </div>
-      <div class="fg">
+      <div class="g-form-row">
+        <input type="tel" id="ph" placeholder="Phone Number">
         <select id="sr">
-          <option value="" disabled selected>Service Required</option>
+          <option value="" disabled selected>Service Required...</option>
           <option value="gst">GST Services</option>
           <option value="itr">Income Tax</option>
           <option value="roc">Company/LLP Registration</option>
           <option value="audit">Audit & Assurance</option>
-          <option value="tm">Trademark</option>
           <option value="other">Other</option>
         </select>
-        <label for="sr">Service Required</label>
       </div>
-      <div class="fg">
-        <textarea id="msg" placeholder="x"></textarea>
-        <label for="msg">Your Message</label>
-      </div>
-      <button class="form-submit" onclick="submitForm(this)">BOOK FREE CONSULTATION &rarr;</button>
+      <textarea id="msg" placeholder="Write your message..."></textarea>
+      
+      <button class="glass-submit" onclick="submitForm(this)">Send Message</button>
       
       <div class="form-success" id="formSuccess">
         <div class="check">✓</div>
@@ -1410,33 +1545,6 @@ window.addEventListener('error', function(e) {
       </div>
     </div>
 
-    <!-- OUR OFFICES - 60/40 SPLIT WITH MAP ON LEFT -->
-    <div class="contact-offices-grid">
-      <!-- LEFT: MAP (40%) -->
-      <div style="display: flex; flex-direction: column; justify-content: flex-end; height: 100%;">
-        <div class="map-wrap" style="height: 400px; margin-top: 0; width: 100%;">
-        <div class="map-loader"></div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.1234567890!2d76.7063!3d8.9889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fe3b7e3b7e3b%3A0x0!2sKottiyam%2C%20Kollam%2C%20Kerala%2C%20India!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-          width="100%" height="100%" style="border:0;display:block;position:relative;z-index:1;filter:grayscale(100%) contrast(1.1)" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="MP Tax Associates Location"></iframe>
-        </div>
-      </div>
-
-      <!-- RIGHT: OFFICES TEXT (60%) -->
-      <div class="contact-left rvl" style="gap:32px;">
-        <div>
-          <div class="slabel" style="justify-content:flex-start;color:var(--orange)">Our Offices</div>
-          <h2>Contact MP Tax &amp;<br>Compliance Experts</h2>
-          <p style="margin-top:14px">Our team of CAs, CMAs and Tax Practitioners deliver end-to-end compliance — so you can focus entirely on growing your business.</p>
-        </div>
-        <div class="ci-list">
-          <div class="ci-item"><div class="ci-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><div class="ci-txt"><strong>Phone &amp; Landline</strong>+91 96339 68020 | 0474 2991293</div></div>
-          <div class="ci-item"><div class="ci-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div><div class="ci-txt"><strong>Email</strong>info@mptaxassociates.com</div></div>
-          <div class="ci-item"><div class="ci-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div><div class="ci-txt"><strong>Office Hours</strong>Mon – Sat: 9:00 AM – 6:00 PM</div></div>
-          <div class="ci-item"><div class="ci-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><div class="ci-txt"><strong>Address</strong>Kottiyam, Kollam, Kerala, India</div></div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1500,7 +1608,7 @@ window.addEventListener('error', function(e) {
       </div>
     </div>
     <div class="ft-bot">
-      <div class="ft-copy">&copy; 2025 MP Tax Associates. All rights reserved. Built with ❤️ for Indian businesses.</div>
+      <div class="ft-copy">&copy; 2025 MP Tax Associates. All rights reserved. Made by <a href="https://codexorastudio.vercel.app/" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; font-weight: 600;">Codexora Studio</a></div>
       <div class="ft-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
     </div>
   </div>
@@ -1508,7 +1616,18 @@ window.addEventListener('error', function(e) {
 
 <!-- ══════════════ MP ASSISTANT CHATBOT ══════════════ -->
 <button id="chat-btn" onclick="toggleChat()" aria-label="Help and Support">
-  <svg class="ico-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+  <svg class="ico-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <line x1="12" y1="2" x2="12" y2="6" />
+    <circle cx="12" cy="2" r="1" fill="currentColor" stroke="none" />
+    <rect x="5" y="6" width="14" height="10" rx="3" />
+    <path d="M5 10H3v4h2" />
+    <path d="M19 10h2v4h-2" />
+    <circle cx="9" cy="11" r="1.5" fill="currentColor" stroke="none"/>
+    <circle cx="15" cy="11" r="1.5" fill="currentColor" stroke="none"/>
+    <path d="M9 13.5 Q12 15.5 15 13.5" />
+    <path d="M3 14v2a4 4 0 0 0 4 4h4" />
+    <circle cx="12" cy="20" r="1.5" fill="currentColor" stroke="none"/>
+  </svg>
   <span class="chat-btn-text">Help & Support</span>
   <svg class="ico-close" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"/></svg>
 </button>
@@ -1734,8 +1853,8 @@ window.addEventListener('load', () => {
       gsap.timeline({
         scrollTrigger: {
           trigger: "#workflow",
-          start: "top 80%", 
-          end: "center center", 
+          start: "top 100%", // Start animating exactly when it enters the bottom of the screen
+          end: "top 40%", // Finish animation faster (before it even reaches the center)
           scrub: 1
         }
       })
