@@ -183,6 +183,9 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 .mqitem{display:flex;align-items:center;gap:20px;padding:0 36px;font-family:var(--display);font-size:14px;font-weight:600;color:var(--grey);letter-spacing:.08em;white-space:nowrap;text-transform:uppercase}
 .mqitem .sep{width:4px;height:4px;background:var(--border);flex-shrink:0}
 
+.svc-block { display: none; animation: fadeSvc 0.4s ease; }
+.svc-block.active { display: block; }
+@keyframes fadeSvc { from{opacity:0; transform:translateY(15px)} to{opacity:1; transform:translateY(0)} }
 /* ── SECTION HELPERS ─────────────────────────────────────── */
 .sec{padding:120px 48px;max-width:1280px;margin:0 auto}
 .slabel{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:24px}
@@ -511,11 +514,12 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 .trole{font-size:14px;color:rgba(255,255,255,0.85)}
 
 /* ── TRUST ───────────────────────────────────────────────── */
-#trust{background:#fff;padding:72px 0;overflow:hidden;border-bottom:1px solid var(--border)}
-.trust-lbl{text-align:center;font-size:13px;color:var(--grey);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:36px}
+.trust-lbl-wrapper{background:#fff;padding-top:40px}
+#trust{background:var(--dark);padding:14px 0;overflow:hidden;border-bottom:none}
+.trust-lbl{text-align:center;font-size:13px;color:var(--grey);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
 .trust-track{display:flex;gap:0;width:max-content;animation:mqs 20s linear infinite}
-.trust-item{padding:0 44px;font-family:var(--display);font-size:24px;font-weight:500;color:var(--grey);white-space:nowrap;transition:color .3s;cursor:default;letter-spacing:0em}
-.trust-item:hover{color:var(--dark)}
+.trust-item{padding:0 44px;font-family:var(--display);font-size:18px;font-weight:500;color:#ffffff;white-space:nowrap;transition:color .3s;cursor:default;letter-spacing:0em}
+.trust-item:hover{color:rgba(255,255,255,0.6)}
 
 /* ── FAQ ─────────────────────────────────────────────────── */
 /* ── FAQ MINIMAL REDESIGN ── */
@@ -1769,22 +1773,7 @@ window.addEventListener('load', () => {
   });
 
   if (window.innerWidth > 768) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navItems.forEach(item => {
-            if (item.getAttribute('data-target') === id) {
-              item.classList.add('active');
-            } else {
-              item.classList.remove('active');
-            }
-          });
-        }
-      });
-    }, { rootMargin: '-20% 0px -60% 0px' }); // Trigger when section is in top half of screen
-
-    sections.forEach(sec => observer.observe(sec));
+    
     
     // Click to scroll
     navItems.forEach(item => {
