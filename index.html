@@ -55,10 +55,12 @@
   <link href="https://fonts.cdnfonts.com/css/gotham" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
 
 <style>
 /* ── TOKENS ─────────────────────────────────────────────── */
 :root{
+  --primary: #2563eb;
   --bg-primary: #FFFFFF;
   --bg-secondary: #F8F9FA;
   --text-primary: #0F172A;
@@ -176,16 +178,13 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 
 
 /* ── MARQUEE ─────────────────────────────────────────────── */
-.mqsec{background:#fff;padding:40px 0;overflow:hidden;border-bottom:1px solid var(--border)}
+.mqsec{background:var(--dark);padding:12px 0;overflow:hidden;border-bottom:none}
 .mqtrack{display:flex;gap:0;width:max-content;animation:mqs 35s linear infinite}
 .mqtrack.rev{animation-direction:reverse}
 @keyframes mqs{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.mqitem{display:flex;align-items:center;gap:20px;padding:0 36px;font-family:var(--display);font-size:14px;font-weight:600;color:var(--grey);letter-spacing:.08em;white-space:nowrap;text-transform:uppercase}
-.mqitem .sep{width:4px;height:4px;background:var(--border);flex-shrink:0}
+.mqitem{display:flex;align-items:center;gap:20px;padding:0 36px;font-family:var(--display);font-size:14px;font-weight:600;color:#ffffff;letter-spacing:.08em;white-space:nowrap;text-transform:uppercase}
+.mqitem .sep{width:4px;height:4px;background:rgba(255,255,255,0.4);flex-shrink:0}
 
-.svc-block { display: none; animation: fadeSvc 0.4s ease; }
-.svc-block.active { display: block; }
-@keyframes fadeSvc { from{opacity:0; transform:translateY(15px)} to{opacity:1; transform:translateY(0)} }
 /* ── SECTION HELPERS ─────────────────────────────────────── */
 .sec{padding:120px 48px;max-width:1280px;margin:0 auto}
 .slabel{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:24px}
@@ -332,6 +331,8 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 #industries { 
   background: var(--bg-secondary); 
   position: relative; 
+  margin-top: -50vh;
+  z-index: 20; 
   height: 100vh; /* Force perfect viewport fit */
   min-height: 600px;
   display: flex;
@@ -367,7 +368,7 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
   display: flex; 
   justify-content: center; 
   transform-origin: center center; 
-  will-change: transform, opacity;
+  will-change: transform, opacity; backface-visibility: hidden; transform: translateZ(0);
   background: var(--bg-secondary);
 }
 /* Magic trick: First card is relative so it sets the container's height dynamically! */
@@ -514,11 +515,11 @@ body{font-family:var(--font);background:var(--light);color:var(--dark);overflow-
 .trole{font-size:14px;color:rgba(255,255,255,0.85)}
 
 /* ── TRUST ───────────────────────────────────────────────── */
-.trust-lbl-wrapper{background:#fff;padding-top:40px}
-#trust{background:var(--dark);padding:14px 0;overflow:hidden;border-bottom:none}
-.trust-lbl{text-align:center;font-size:13px;color:var(--grey);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.trust-lbl-wrapper{background:#fff;padding-top:60px}
+#trust{background:var(--dark);padding:16px 0;overflow:hidden;border-bottom:none}
+.trust-lbl{text-align:center;font-size:13px;color:var(--grey);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
 .trust-track{display:flex;gap:0;width:max-content;animation:mqs 20s linear infinite}
-.trust-item{padding:0 44px;font-family:var(--display);font-size:18px;font-weight:500;color:#ffffff;white-space:nowrap;transition:color .3s;cursor:default;letter-spacing:0em}
+.trust-item{padding:0 44px;font-family:var(--display);font-size:20px;font-weight:500;color:#ffffff;white-space:nowrap;transition:color .3s;cursor:default;letter-spacing:0em}
 .trust-item:hover{color:rgba(255,255,255,0.6)}
 
 /* ── FAQ ─────────────────────────────────────────────────── */
@@ -905,7 +906,132 @@ footer{background:var(--dark);padding:80px 40px 40px;margin:24px;border-radius:3
   .glass-contact-section { padding: 80px 20px; }
 }
 
+
+
+
+
+/* ════════ SIDE-BY-SIDE PREMIUM ARCHITECTURE ════════ */
+#services { background: var(--bg-secondary); padding: 0 0 40px 0; position: relative; }
+.svc-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: flex-start; gap: 40px; position: relative; }
+.svc-nav { width: 280px; flex-shrink: 0; position: sticky; top: 120px; height: calc(100vh - 120px); z-index: 50; padding-top: 40px; }
+#premium-svc-nav { display: flex; flex-direction: column; gap: 24px; list-style: none; padding:0; margin:0; }
+#premium-svc-nav li { position: relative; }
+.svc-nav-link { display: flex; align-items: center; gap: 16px; text-decoration: none; color: #94A3B8; font-family: var(--body); font-size: 18px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; }
+.nav-num { font-family: var(--display); font-size: 16px; font-weight: 500; opacity: 0.6; }
+.nav-divider { width: 24px; height: 1px; background: #CBD5E1; transition: all 0.4s; }
+.nav-text { font-weight: 400; }
+.nav-active-line { position: absolute; left: -20px; top: 50%; transform: translateY(-50%); width: 3px; height: 0; background: var(--dark); transition: height 0.4s ease; }
+.svc-nav-link.active { color: #1a237e; transform: translateX(8px); }
+.svc-nav-link.active .nav-text { font-weight: 600; }
+.svc-nav-link.active .nav-divider { background: #1a237e; width: 32px; }
+.svc-nav-link.active .nav-num { opacity: 1; }
+.svc-nav-link.active ~ .nav-active-line { height: 24px; background: #1a237e; }
+
+.svc-content-viewport { flex-grow: 1; display: flex; flex-direction: column; position: relative; padding-bottom: 50vh; margin-top: 160px; }
+
+/* THE MAGIC: CSS Grid Side-by-Side */
+.svc-category { 
+  position: sticky; top: 120px; width: 100%; height: calc(100vh - 140px); 
+  background: #ffffff !important; /* CRITICAL: Fixes overlap transparency issue */
+  padding: 40px; 
+  will-change: transform, opacity; box-shadow: 0 -12px 40px rgba(0,0,0,0.06); 
+  border-radius: 24px; transform-origin: top center; pointer-events: auto; 
+  margin-bottom: 40vh; /* gives room for scrolling before next card comes */
+  
+  display: grid; 
+  grid-template-columns: 32% 1fr; 
+  grid-template-rows: auto auto auto 1fr; 
+  grid-template-areas: 
+    "title cards"
+    "desc cards"
+    "btn cards"
+    "hero cards";
+  column-gap: 40px;
+  row-gap: 20px;
+  overflow: hidden;
+}
+#svc-inc { z-index: 10; }
+#svc-compliance { z-index: 11; }
+#svc-tax { z-index: 12; }
+#svc-gst { z-index: 13; }
+#svc-fund { z-index: 14; }
+#svc-acc { z-index: 15; }
+.svc-category:last-child { margin-bottom: 0; }
+
+.svc-cat-title { grid-area: title; font-family: var(--display); font-size: 32px; color: var(--dark); margin-bottom: 0; letter-spacing: -0.02em; }
+.svc-cat-desc { grid-area: desc; font-size: 14px; line-height: 1.6; color: var(--grey); margin-bottom: 0; }
+.svc-cat-divider { display: none; }
+.view-all-btn { grid-area: btn; justify-self: flex-start; display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; background: var(--dark); color: #fff; font-family: var(--body); font-size: 13px; font-weight: 600; border-radius: 30px; border: none; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+.view-all-btn:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
+
+.svc-hero-wrapper { grid-area: hero; position: relative; width: 100%; height: 100%; min-height: 120px; border-radius: 12px; overflow: hidden; margin: 0; }
+.svc-hero-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.2); z-index: 2; mix-blend-mode: multiply; }
+.svc-hero-img { width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 12s linear; }
+.svc-hero-wrapper.in-view .svc-hero-img { transform: scale(1.05); }
+
+/* Compact Horizontal Cards */
+.svc-cards-grid { grid-area: cards; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 0; grid-template-rows: repeat(3, 1fr); }
+.svc-premium-card { display: flex; flex-direction: row; align-items: center; gap: 16px; background: #ffffff; border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 16px; text-decoration: none; color: var(--dark); transition: all 0.4s ease; cursor: pointer; }
+.card-visual { width: 64px; height: 64px; flex-shrink: 0; border-radius: 8px; overflow: hidden; margin-bottom: 0; position: relative; display: block !important; }
+.card-visual-overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.2); z-index: 2; transition: background 0.5s; }
+.card-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: grayscale(50%); }
+
+.card-content { display: flex; flex-direction: column; flex-grow: 1; }
+.card-header { display: none; } /* Hide icon/arrow header to save space, visual does the job */
+.card-title { font-size: 15px; font-family: var(--body); font-weight: 600; margin-bottom: 6px; }
+.card-desc { font-size: 13px; color: var(--grey); line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+.svc-premium-card:hover { transform: translateY(-4px); background: #f8fafc; border-color: rgba(15, 23, 42, 0.15); box-shadow: 0 12px 24px rgba(0,0,0,0.06); }
+.svc-premium-card:hover .card-visual img { transform: scale(1.1); filter: grayscale(0%); }
+
+@media (max-width: 1100px) {
+  .svc-container { flex-direction: column; gap: 40px; }
+  .svc-nav { width: 100%; height: auto; position: relative; top: 0; padding-top: 80px; }
+  .svc-category { 
+    position: relative; top: 0; height: auto; margin-bottom: 40px; box-shadow: none; 
+    grid-template-columns: 1fr;
+    grid-template-areas: "title" "desc" "hero" "cards" "btn";
+  }
+  .svc-cards-grid { grid-template-columns: 1fr; }
+  .svc-hero-wrapper { height: 200px; margin-bottom: 24px; }
+}
+/* SIDE DRAWER */
+.drawer-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(4px); z-index: 99999; opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+.svc-drawer { position: fixed; top: 0; right: 0; width: 100%; max-width: 600px; height: 100vh; background: #fff; z-index: 100000; transform: translateX(100%); display: flex; flex-direction: column; box-shadow: -20px 0 60px rgba(0,0,0,0.1); }
+.drawer-active .drawer-overlay { opacity: 1; pointer-events: auto; }
+.drawer-header { padding: 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); }
+.drawer-title { font-family: var(--display); font-size: 32px; color: var(--dark); }
+.drawer-close { width: 44px; height: 44px; border-radius: 50%; background: var(--bg-secondary); border: none; font-size: 20px; color: var(--dark); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.drawer-close:hover { background: var(--border-subtle); transform: rotate(90deg); }
+.drawer-content { flex-grow: 1; overflow-y: auto; padding: 40px; }
+.drawer-content::-webkit-scrollbar { width: 6px; }
+.drawer-content::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 6px; }
+.drawer-section { margin-bottom: 48px; }
+.drawer-section h3 { font-size: 20px; color: var(--dark); margin-bottom: 16px; font-family: var(--body); }
+.drawer-section p { color: var(--grey); line-height: 1.7; font-size: 16px; }
+.drawer-list { list-style: none; padding: 0; }
+.drawer-list li { padding-left: 24px; position: relative; margin-bottom: 12px; color: var(--grey); line-height: 1.6; }
+.drawer-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 8px; border-radius: 50%; background: var(--dark); }
+.drawer-footer { padding: 32px 40px; border-top: 1px solid var(--border-subtle); display: flex; gap: 16px; }
+.btn-primary-full { flex: 1; padding: 18px; background: var(--dark); color: #fff; text-align: center; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; }
+.btn-primary-full:hover { background: var(--primary); transform: translateY(-2px); }
+.btn-outline-full { flex: 1; padding: 18px; background: transparent; color: var(--dark); border: 1px solid var(--dark); text-align: center; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; }
+.btn-outline-full:hover { background: var(--bg-secondary); }
+
+@media (max-width: 1100px) {
+  .svc-container { flex-direction: column; height: auto; gap: 40px; }
+  .svc-nav { width: 100%; height: auto; padding-top: 80px; }
+  #premium-svc-nav { flex-direction: row; flex-wrap: wrap; gap: 16px; }
+  .svc-content-viewport { height: auto; overflow: visible; }
+  
+  .svc-cards-grid { grid-template-columns: 1fr; }
+  .nav-active-line { display: none; }
+  .svc-nav-link { background: var(--bg-secondary); padding: 12px 20px; border-radius: 30px; font-size: 14px; }
+  .svc-nav-link.active { transform: none; background: var(--dark); color: #fff; }
+  .svc-nav-link.active .nav-divider { display: none; }
+}
 </style>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -1013,7 +1139,7 @@ window.addEventListener('error', function(e) {
 
 <!-- MARQUEE -->
 <div class="mqsec">
-  <div style="overflow:hidden;border-top:1px solid rgba(255,255,255,.06);padding-top:28px">
+  <div style="overflow:hidden;border-top:1px solid rgba(255,255,255,.06)">
     <div class="mqtrack">
       <div class="mqitem">GST Registration<span class="sep"></span></div>
       <div class="mqitem">Income Tax Filing<span class="sep"></span></div>
@@ -1041,180 +1167,416 @@ window.addEventListener('error', function(e) {
 
 <!-- ══════════════ SERVICES — PREMIUM STICKY SCROLL ══════════════ -->
 <!-- ══════════════ SERVICES — BIG FOUR SCROLLSPY ARCHITECTURE ══════════════ -->
+
+<!-- ══════════════ PREMIUM SERVICES REDESIGN ══════════════ -->
+
+<!-- ══════════════ PREMIUM SERVICES STACKED ══════════════ -->
 <section id="services">
-  <div class="services-container">
-    <div class="services-header sling-up">
-      <div class="slabel">What We Do</div>
-      <h2>Complete Services Suite</h2>
-    </div>
+  <div class="svc-container">
+    
+    <!-- LEFT NAVIGATION -->
+    <aside class="svc-nav">
+      <div class="slabel" style="margin-bottom: 40px;">Expertise Areas</div>
+      <ul id="premium-svc-nav">
+        <li>
+          <a href="#svc-inc" class="svc-nav-link active">
+            <span class="nav-num">01</span>
+            <span class="nav-divider"></span>
+            <span class="nav-text">Business Incorporation</span>
+          </a>
+        </li>
+        <li>
+          <a href="#svc-compliance" class="svc-nav-link">
+            <span class="nav-num">02</span>
+            <span class="nav-divider"></span>
+            <span class="nav-text">Annual Compliance & Audit</span>
+          </a>
+        </li>
+        <li>
+          <a href="#svc-tax" class="svc-nav-link">
+            <span class="nav-num">03</span>
+            <span class="nav-divider"></span>
+            <span class="nav-text">Taxation Compliance's</span>
+          </a>
+        </li>
+        <li>
+          <a href="#svc-gst" class="svc-nav-link">
+            <span class="nav-num">04</span>
+            <span class="nav-divider"></span>
+            <span class="nav-text">GST Services</span>
+          </a>
+        </li>
+        <li>
+          <a href="#svc-fund" class="svc-nav-link">
+            <span class="nav-num">05</span>
+            <span class="nav-divider"></span>
+            <span class="nav-text">Fund Raising/Loans</span>
+          </a>
+        </li>
+        <li>
+          <a href="#svc-acc" class="svc-nav-link">
+            <span class="nav-num">06</span>
+            <span class="nav-divider"></span>
+            <span class="nav-text">Accounting & Business Support</span>
+          </a>
+        </li>
+</ul>
+    </aside>
 
-    <div class="services-layout">
-      <!-- LEFT SIDEBAR -->
-      <aside class="svc-sidebar">
-        <ul class="svc-nav-list" id="svcNavList">
-          <li class="svc-nav-item active" data-target="cat-taxation">
-            <span class="svc-nav-num">01</span>
-            <span class="svc-nav-text">Taxation &amp; Compliance</span>
-          </li>
-          <li class="svc-nav-item" data-target="cat-registration">
-            <span class="svc-nav-num">02</span>
-            <span class="svc-nav-text">Business Registration</span>
-          </li>
-          <li class="svc-nav-item" data-target="cat-audit">
-            <span class="svc-nav-num">03</span>
-            <span class="svc-nav-text">Audit &amp; Assurance</span>
-          </li>
-          <li class="svc-nav-item" data-target="cat-licenses">
-            <span class="svc-nav-num">04</span>
-            <span class="svc-nav-text">Licenses &amp; Certifications</span>
-          </li>
-          <li class="svc-nav-item" data-target="cat-advisory">
-            <span class="svc-nav-num">05</span>
-            <span class="svc-nav-text">Advisory &amp; Specialized</span>
-          </li>
-        </ul>
-      </aside>
-
-      <!-- RIGHT CONTENT -->
-      <div class="svc-content">
-        <!-- 01 -->
-        <div class="svc-block" id="cat-taxation">
-          <h3 class="svc-block-title">Taxation &amp; Compliance</h3>
-          <div class="svc-grid">
-            <a href="service-gst-registration.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">GST Registration</h4>
-              <p class="svc-card-desc">End-to-end processing for new GST numbers across all Indian states.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-gst-return-filing.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">GST Return Filing</h4>
-              <p class="svc-card-desc">Monthly, quarterly, and annual reconciliations and timely filings.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-income-tax-filing.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Income Tax Filing</h4>
-              <p class="svc-card-desc">Comprehensive ITR filing for individuals, HUFs, and corporations.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-professional-tax.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Professional Tax</h4>
-              <p class="svc-card-desc">Registration and compliance for business owners and employees.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-          </div>
+    <!-- RIGHT CONTENT VIEWPORT -->
+    <div class="svc-content-viewport">
+      <div id="svc-inc" class="svc-category">
+        <h3 class="svc-cat-title">Business Incorporation</h3>
+        <p class="svc-cat-desc">Expert guidance from validating your business idea to securing funds for expansion.</p>
+        <div class="svc-hero-wrapper">
+          <div class="svc-hero-overlay"></div>
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Business Incorporation" class="svc-hero-img">
         </div>
-
-        <!-- 02 -->
-        <div class="svc-block" id="cat-registration">
-          <h3 class="svc-block-title">Business Registration</h3>
-          <div class="svc-grid">
-            <a href="service-company-registration.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Company Registration</h4>
-              <p class="svc-card-desc">Incorporation of Private Limited and Public Limited Companies.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-llp-registration.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">LLP Registration</h4>
-              <p class="svc-card-desc">Formation and drafting of agreements for Limited Liability Partnerships.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-roc-compliance.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">ROC Compliance</h4>
-              <p class="svc-card-desc">Annual filings and structural changes with the Registrar of Companies.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-startup-compliance.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Startup Compliance</h4>
-              <p class="svc-card-desc">Specialized packages for DPIIT recognition and seed-stage compliance.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-          </div>
+        <div class="svc-cards-grid">
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" alt="Business Idea validation" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Business Idea validation</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&q=80" alt="Company Incorporation" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Company Incorporation</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=200&q=80" alt="Setting up legal framework" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Setting up legal framework</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="Digitizing your Business" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Digitizing your Business</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=200&q=80" alt="Client Acquisitions" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Client Acquisitions</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=200&q=80" alt="Fund Raising" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Fund Raising</h4>
+            </div>
+          </a>
         </div>
-
-        <!-- 03 -->
-        <div class="svc-block" id="cat-audit">
-          <h3 class="svc-block-title">Audit &amp; Assurance</h3>
-          <div class="svc-grid">
-            <a href="service-statutory-audit.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Statutory Audit</h4>
-              <p class="svc-card-desc">Independent financial audits aligned with regulatory requirements.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-internal-audit.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Internal Audit</h4>
-              <p class="svc-card-desc">Process optimization, risk assessment, and operational reviews.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-accounting-amp-bookkeeping.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Accounting &amp; Bookkeeping</h4>
-              <p class="svc-card-desc">Cloud-based and traditional ledger maintenance and reporting.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-payroll-services.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Payroll Services</h4>
-              <p class="svc-card-desc">Salary processing, PF, ESI, and TDS compliance management.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-          </div>
+      </div>
+      <div id="svc-compliance" class="svc-category">
+        <h3 class="svc-cat-title">Annual Compliance & Audit</h3>
+        <p class="svc-cat-desc">Provides assistance in audit process thereby improving efficiency.</p>
+        <div class="svc-hero-wrapper">
+          <div class="svc-hero-overlay"></div>
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80" alt="Annual Compliance & Audit" class="svc-hero-img">
         </div>
-
-        <!-- 04 -->
-        <div class="svc-block" id="cat-licenses">
-          <h3 class="svc-block-title">Licenses &amp; Certifications</h3>
-          <div class="svc-grid">
-            <a href="service-trademark-registration.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Trademark Registration</h4>
-              <p class="svc-card-desc">Brand protection, from comprehensive search to final certification.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-msme-registration.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">MSME Registration</h4>
-              <p class="svc-card-desc">Udyam registration to secure government schemes and subsidies.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-import-export-code.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Import Export Code</h4>
-              <p class="svc-card-desc">Mandatory DGFT registration for international trade operations.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-fssai-registration.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">FSSAI Registration</h4>
-              <p class="svc-card-desc">Basic, State, and Central licensing for food businesses.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-          </div>
+        <div class="svc-cards-grid">
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" alt="Internal Audit" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Internal Audit</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&q=80" alt="Stock Audit" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Stock Audit</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=200&q=80" alt="GST Audit" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">GST Audit</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="Statutory Audit" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Statutory Audit</h4>
+            </div>
+          </a>
         </div>
-
-        <!-- 05 -->
-        <div class="svc-block" id="cat-advisory">
-          <h3 class="svc-block-title">Advisory &amp; Specialized</h3>
-          <div class="svc-grid">
-            <a href="service-business-advisory.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Business Advisory</h4>
-              <p class="svc-card-desc">Strategic planning, restructuring, and capital management consulting.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-tax-planning.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Tax Planning</h4>
-              <p class="svc-card-desc">Proactive strategies to legally minimize liabilities and boost cash flow.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-digital-signature.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">Digital Signature</h4>
-              <p class="svc-card-desc">Class 3 DSC issuance for secure e-filing and e-tendering.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-            <a href="service-pan-tan-services.html" class="svc-card sling-up" style="text-decoration:none;display:block;">
-              <h4 class="svc-card-title">PAN / TAN Services</h4>
-              <p class="svc-card-desc">New applications and corrections for all business entities.</p>
-              <div class="svc-card-arrow">↗</div>
-            </a>
-          </div>
+      </div>
+      <div id="svc-tax" class="svc-category">
+        <h3 class="svc-cat-title">Taxation Compliance's</h3>
+        <p class="svc-cat-desc">Comprehensive tax planning and dispute resolution for your business.</p>
+        <div class="svc-hero-wrapper">
+          <div class="svc-hero-overlay"></div>
+          <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80" alt="Taxation Compliance's" class="svc-hero-img">
+        </div>
+        <div class="svc-cards-grid">
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" alt="Tax planning and advisory" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Tax planning and advisory</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&q=80" alt="International Taxation" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">International Taxation</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=200&q=80" alt="Transfer Pricing" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Transfer Pricing</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="Indirect Taxation" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Indirect Taxation</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=200&q=80" alt="Tax Controversy" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Tax Controversy</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=200&q=80" alt="Dispute Resolution" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Dispute Resolution</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div id="svc-gst" class="svc-category">
+        <h3 class="svc-cat-title">GST Services</h3>
+        <p class="svc-cat-desc">Hassle free GST registration assistant to your business and helps you achieve tax benefits by promptly file GST Returns.</p>
+        <div class="svc-hero-wrapper">
+          <div class="svc-hero-overlay"></div>
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="GST Services" class="svc-hero-img">
+        </div>
+        <div class="svc-cards-grid">
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" alt="GST Registration" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">GST Registration</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&q=80" alt="GST Return Filing" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">GST Return Filing</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=200&q=80" alt="Tax Benefit Analysis" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Tax Benefit Analysis</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="GST Advisory" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">GST Advisory</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div id="svc-fund" class="svc-category">
+        <h3 class="svc-cat-title">Fund Raising/Loans</h3>
+        <p class="svc-cat-desc">Assistance in working capital and cash flow management by cash forecasting, fund raising, cost management, receivables management.</p>
+        <div class="svc-hero-wrapper">
+          <div class="svc-hero-overlay"></div>
+          <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=800&q=80" alt="Fund Raising/Loans" class="svc-hero-img">
+        </div>
+        <div class="svc-cards-grid">
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" alt="Cash Forecasting" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Cash Forecasting</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&q=80" alt="Fund Raising" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Fund Raising</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=200&q=80" alt="Cost Management" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Cost Management</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="Receivables Management" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Receivables Management</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=200&q=80" alt="Working Capital Mgmt" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Working Capital Mgmt</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=200&q=80" alt="Project Loans" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Project Loans</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div id="svc-acc" class="svc-category">
+        <h3 class="svc-cat-title">Accounting & Business Support</h3>
+        <p class="svc-cat-desc">Preparing & maintaining books of accounts, finalizing annual accounts, Setting up Cost Centre & Profit Centre, Budgetary Controls.</p>
+        <div class="svc-hero-wrapper">
+          <div class="svc-hero-overlay"></div>
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80" alt="Accounting & Business Support" class="svc-hero-img">
+        </div>
+        <div class="svc-cards-grid">
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=200&q=80" alt="Maintaining Books of Accounts" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Maintaining Books of Accounts</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=200&q=80" alt="Finalizing Annual Accounts" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Finalizing Annual Accounts</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?w=200&q=80" alt="Setting up Cost Centre" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Setting up Cost Centre</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=200&q=80" alt="Profit Centre Setup" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Profit Centre Setup</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=200&q=80" alt="Budgetary Controls" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">Budgetary Controls</h4>
+            </div>
+          </a>
+          <a href="#" class="svc-premium-card">
+            <div class="card-visual">
+              <div class="card-visual-overlay"></div>
+              <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=200&q=80" alt="MIS Reporting" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h4 class="card-title">MIS Reporting</h4>
+            </div>
+          </a>
         </div>
       </div>
     </div>
-  </div>
 </section>
+
+
 
 <!-- ══════════════ WHY CHOOSE US — STATIC EXCELLENCE SHOWCASE ══════════════ -->
 <section id="why" class="why-gsap-section">
@@ -1454,8 +1816,10 @@ window.addEventListener('error', function(e) {
 </section>
 
 <!-- ══════════════ TRUST MARQUEE ══════════════ -->
-<section id="trust">
+<div class="trust-lbl-wrapper">
   <div class="trust-lbl">Serving businesses from every industry across India</div>
+</div>
+<section id="trust">
   <div style="overflow:hidden">
     <div class="trust-track">
       <div class="trust-item">Automobile</div><div class="trust-item">FMCG</div><div class="trust-item">E-Commerce</div><div class="trust-item">Logistics</div><div class="trust-item">Real Estate</div><div class="trust-item">Pharma</div><div class="trust-item">Infrastructure</div><div class="trust-item">Media</div><div class="trust-item">Textiles</div><div class="trust-item">Consumer Durables</div><div class="trust-item">Hospitality</div><div class="trust-item">Agriculture</div>
@@ -1670,7 +2034,7 @@ window.addEventListener('error', function(e) {
 <!-- ══════════════ JAVASCRIPT ══════════════ -->
 <script>
 if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 }
 // ── LOADER & HERO GSAP TIMELINE ───────────────────────────────────────────────
 window.addEventListener('load',()=>{
@@ -1773,7 +2137,22 @@ window.addEventListener('load', () => {
   });
 
   if (window.innerWidth > 768) {
-    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navItems.forEach(item => {
+            if (item.getAttribute('data-target') === id) {
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' }); // Trigger when section is in top half of screen
+
+    sections.forEach(sec => observer.observe(sec));
     
     // Click to scroll
     navItems.forEach(item => {
@@ -2095,7 +2474,7 @@ const intentMap = [
   { keywords: ['payroll', 'salary processing', 'pf', 'esi', 'provident fund'], reply: 'Our payroll services cover salary processing, PF & ESI, TDS on salary, Form-16 generation, and full compliance. 💰' },
   { keywords: ['advisory', 'consulting', 'fund raising', 'working capital', 'startup strategy'], reply: 'Our Business Advisory covers strategic planning, fund raising, working capital management, and growth consulting for SMEs and startups. 🧭' },
   { keywords: ['fee', 'cost', 'price', 'charge', 'much is', 'pricing'], reply: 'Our fees depend on the specific service and business size. We offer competitive, transparent pricing. Book a free consultation for a custom quote! 📞' },
-  { keywords: ['contact', 'call', 'phone', 'number', 'email', 'address', 'location', 'where', 'reach', 'office'], reply: '📞 Phone: +91 96339 68020 | 0474 2991293\n✉️ Email: info@mptaxassociates.com\n📍 Kottiyam, Kollam, Kerala\n🕐 Mon-Sat: 9AM - 6PM' },
+  { keywords: ['contact', 'call', 'phone', 'number', 'email', 'address', 'location', 'where', 'reach', 'office'], reply: `Phone: +91 96339 68020 | 0474 2991293\nEmail: info@mptaxassociates.com\nKottiyam, Kollam, Kerala\nMon-Sat: 9AM - 6PM` },
   { keywords: ['professional tax', 'pt registration'], reply: 'Professional Tax registration and return filing for businesses and employees. We handle PT compliance pan-India. 💼' },
   { keywords: ['startup', 'new business'], reply: 'Our Startup Compliance package covers incorporation, DPIIT recognition, first-year GST, ROC, and tax compliance. Perfect for new businesses! 🚀' },
   { keywords: ['dsc', 'digital signature', 'class 3'], reply: 'We provide Class 2 & Class 3 DSC for MCA filings, GST, income tax, and e-tendering. Quick delivery. 🔐' },
@@ -2139,7 +2518,7 @@ function chatReply(msg){
 function addMsg(text,type){
   const msgs=document.getElementById('chatMsgs');
   const d=document.createElement('div');d.className=`msg ${type}`;
-  if(type==='bot'){d.innerHTML=`<div class="msg-av">MP</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`}
+  if(type==='bot'){d.innerHTML=`<div class='msg-av'>MP</div><div class='msg-bubble'>${text.replace(/\\n/g,'<br>')}</div>`}
   else{d.innerHTML=`<div class="msg-bubble">${text}</div>`}
   msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
 }
@@ -2292,5 +2671,161 @@ window.addEventListener('load', () => {
   }, 200);
 });
 </script>
+
+
+<!-- ══════════════ PREMIUM SIDE DRAWER ══════════════ -->
+<div class="drawer-overlay"></div>
+<div id="service-drawer" class="svc-drawer">
+  <div class="drawer-header">
+    <h3 class="drawer-title" id="drawer-title-txt">Service Details</h3>
+    <button class="drawer-close" aria-label="Close Drawer">&times;</button>
+  </div>
+  <div class="drawer-content">
+    <div class="drawer-section">
+      <h3>Overview</h3>
+      <p id="drawer-desc">Comprehensive and strategic handling of your requirements. We ensure complete compliance and optimized processes tailored to your specific business model.</p>
+    </div>
+    <div class="drawer-section">
+      <h3>Our Process</h3>
+      <ul class="drawer-list">
+        <li>Initial Consultation & Assessment</li>
+        <li>Document Collection & Verification</li>
+        <li>Drafting & Structuring</li>
+        <li>Filing & Communication with Authorities</li>
+        <li>Final Certification & Handover</li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h3>Required Documents</h3>
+      <ul class="drawer-list">
+        <li>PAN & Aadhaar of Directors/Partners</li>
+        <li>Proof of Registered Address</li>
+        <li>Recent Bank Statements</li>
+        <li>Passport Size Photographs</li>
+      </ul>
+    </div>
+    <div class="drawer-section">
+      <h3>Estimated Timeline</h3>
+      <p>Typically 7-14 working days upon receipt of all required documentation.</p>
+    </div>
+  </div>
+  <div class="drawer-footer">
+    <a href="#contact" class="btn-outline-full" onclick="closeDrawer()">Ask a Question</a>
+    <a href="#contact" class="btn-primary-full" onclick="closeDrawer()">Get Started</a>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const svcCategories = gsap.utils.toArray('.svc-category');
+  const svcNavLinks = document.querySelectorAll('.svc-nav-link');
+
+  if (svcCategories.length > 0 && window.innerWidth > 1100) {
+    
+    // Animate underlying cards scaling down as new card slides UP OVER IT
+    svcCategories.forEach((cat, i) => {
+      cat.style.zIndex = 10 + i;
+      
+      if (i === 0) return;
+      const prevCat = svcCategories[i - 1];
+      
+      gsap.to(prevCat, {
+        scale: 0.94,
+        ease: "none", force3D: true,
+        scrollTrigger: {
+          trigger: cat,
+          start: "top bottom", // When new card enters viewport from bottom
+          end: "top 120px", // When new card hits its sticky point
+          scrub: true
+        }
+      });
+    });
+
+    // Active state for Left Navigation
+    svcCategories.forEach((cat, i) => {
+      ScrollTrigger.create({
+        trigger: cat,
+        start: "top 50%", // middle of screen
+        end: "bottom 50%",
+        onToggle: (self) => {
+          if(self.isActive) {
+            svcNavLinks.forEach(l => l.classList.remove('active'));
+            if(svcNavLinks[i]) svcNavLinks[i].classList.add('active');
+            
+            const heroWrapper = cat.querySelector('.svc-hero-wrapper');
+            if(heroWrapper) heroWrapper.classList.add('in-view');
+          } else {
+            const heroWrapper = cat.querySelector('.svc-hero-wrapper');
+            if(heroWrapper) heroWrapper.classList.remove('in-view');
+          }
+        }
+      });
+    });
+
+    // Nav Jumping
+    const viewport = document.querySelector('.svc-content-viewport');
+    svcNavLinks.forEach((link, i) => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = svcCategories[i];
+        if(target && viewport) {
+           const viewportTop = viewport.getBoundingClientRect().top + window.scrollY;
+           
+           let naturalOffset = 0;
+           for(let j = 0; j < i; j++) {
+             const prev = svcCategories[j];
+             const prevStyle = window.getComputedStyle(prev);
+             const prevMargin = parseFloat(prevStyle.marginBottom) || 0;
+             naturalOffset += prev.offsetHeight + prevMargin;
+           }
+           
+           const targetY = viewportTop + naturalOffset - 120;
+           
+           window.scrollTo({
+             top: targetY,
+             behavior: 'smooth'
+           });
+        }
+      });
+    });
+  }
+
+  // SIDE DRAWER LOGIC
+  const drawer = document.getElementById('service-drawer');
+  const overlay = document.querySelector('.drawer-overlay');
+  const closeBtn = document.querySelector('.drawer-close');
+
+  window.openDrawer = function(title) {
+    if(!drawer) return;
+    document.getElementById('drawer-title-txt').innerText = title || "Service Details";
+    document.body.classList.add('drawer-active');
+    gsap.to(drawer, { x: '0%', duration: 0.6, ease: "power4.out" });
+  }
+
+  window.closeDrawer = function() {
+    document.body.classList.remove('drawer-active');
+    gsap.to(drawer, { x: '100%', duration: 0.5, ease: "power3.in" });
+  }
+
+  if(closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if(overlay) overlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => {
+    if(e.key === "Escape") closeDrawer();
+  });
+
+  document.querySelectorAll('.svc-premium-card, .view-all-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const titleEl = btn.querySelector('.card-title');
+      const title = titleEl ? titleEl.innerText : "Complete Services List";
+      openDrawer(title);
+    });
+  });
+});
+</script>
 </body>
+
 </html>
